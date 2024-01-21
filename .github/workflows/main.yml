@@ -9,22 +9,19 @@ jobs:
     - uses: actions/checkout@v1
     - name: Install Dependecies
       env:
-        PYTHON_VERSION: "3.10"
+        PYTHON_VERSION: "3.12"
       run: |
         py_version=$PYTHON_VERSION
         sudo apt update
-        sudo apt update
         sudo apt install python"$py_version"
-        sudo apt install -y nodejs
     - name: Verify Version
       run: |
           python --version
-          nodejs -v
-          npm --version
     - name: Install libraries for robot
       run: |
           pip install -U pip
-          pip install selenium==4.9.1
+          pip install --upgrade robotframework
+          pip install --upgrade selenium==4.9.1
           pip install -r requirements.txt
     - name: Run Tests
       run: |
