@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.12.1 on win32)" generated="2024-01-21T11:13:25.353162" rpa="false" schemaversion="5">
+<suite id="s1" name="Iphone Search" source="C:\TecnoBank\tests\iphone_search.robot">
+<test id="s1-t1" name="Realizar busca de Iphone e confirmar que o item de maior valor é menor ou igual a US3000" line="19">
+<kw name="Dado que acesso o Google pesquisando por Amazon Brasil" owner="base" type="SETUP">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-01-21T11:13:25.635893" level="INFO">${input_text} = {'amazon_brasil': 'Amazon Brasil'}</msg>
+<var>${input_text}</var>
+<arg>amazon_brasil=Amazon Brasil</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-01-21T11:13:25.629763" elapsed="0.006130"/>
+</kw>
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-01-21T11:13:25.635893" level="INFO">Opening browser 'Chrome' to base url 'https://www.google.com'.</msg>
+<arg>url=${URL_GOOGLE}</arg>
+<arg>browser=${BROWSER_CHROME}</arg>
+<arg>options=${HEADLESS}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-01-21T11:13:25.635893" elapsed="3.943217"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2024-01-21T11:13:29.579110" elapsed="0.109888"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-01-21T11:13:29.688998" level="INFO">Typing text 'Amazon Brasil' into text field 'css=[title=Pesquisar]'.</msg>
+<arg>${FIELD_SEARCH_GOOGLE}</arg>
+<arg>${input_text}[amazon_brasil]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-01-21T11:13:29.688998" elapsed="0.151695"/>
+</kw>
+<kw name="Press Keys" owner="SeleniumLibrary">
+<msg time="2024-01-21T11:13:29.841701" level="INFO">Sending key(s) ('ENTER',) to css=[title=Pesquisar] element.</msg>
+<msg time="2024-01-21T11:13:30.149800" level="INFO">Pressing special key ENTER to element.</msg>
+<msg time="2024-01-21T11:13:30.149800" level="INFO">Releasing special key ENTER.</msg>
+<arg>${FIELD_SEARCH_GOOGLE}</arg>
+<arg>ENTER</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<status status="PASS" start="2024-01-21T11:13:29.841701" elapsed="3.295786"/>
+</kw>
+<kw name="Clicar no primeiro elemento do site Amazon Brasil" owner="elements_base">
+<msg time="2024-01-21T11:13:33.197071" level="INFO">Clicking element 'xpath://h3[text()="Amazon.com.br | Tudo pra você, de A a Z."]/..//h3[@class="LC20lb MBeuO DKV0Md"]'.</msg>
+<arg>${LINK_AMAZON}</arg>
+<status status="PASS" start="2024-01-21T11:13:33.137487" elapsed="2.102239"/>
+</kw>
+<status status="PASS" start="2024-01-21T11:13:25.629763" elapsed="9.609963"/>
+</kw>
+<kw name="Quando pesquiso o termo Iphone pelo site da Amazon Brasil" owner="base">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-01-21T11:13:35.241725" level="INFO">${input_text} = {'iphone_apple': 'Iphone Apple'}</msg>
+<var>${input_text}</var>
+<arg>iphone_apple=Iphone Apple</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-01-21T11:13:35.241725" elapsed="0.000000"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-01-21T11:13:35.242726" level="INFO">Typing text 'Iphone Apple' into text field 'css=input[placeholder="Pesquisa Amazon.com.br"]'.</msg>
+<arg>${FIELD_SEARCH_AMAZON}</arg>
+<arg>${input_text}[iphone_apple]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-01-21T11:13:35.241725" elapsed="0.567163"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-01-21T11:13:35.808888" level="INFO">Clicking button 'css=#nav-search-submit-button'.</msg>
+<arg>${BTN_SEARCH_AMAZON}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-01-21T11:13:35.808888" elapsed="1.706578"/>
+</kw>
+<status status="PASS" start="2024-01-21T11:13:35.240729" elapsed="2.275742"/>
+</kw>
+<kw name="E confiro o item com maior valor" owner="iphone_search">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-01-21T11:13:37.517469" level="INFO">Clicking element 'css=span[class="a-dropdown-container"]'.</msg>
+<arg>${DROPDOWN_RANK}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-01-21T11:13:37.516471" elapsed="0.092659"/>
+</kw>
+<kw name="Selecionar o item de maior para menor valor" owner="elements_base">
+<msg time="2024-01-21T11:13:37.657374" level="INFO">Clicking element 'css=a[id="s-result-sort-select_2"]'.</msg>
+<arg>${BIGGER_SMALLER}</arg>
+<status status="PASS" start="2024-01-21T11:13:37.609130" elapsed="0.147045"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${HIGHEST_VALUE}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2024-01-21T11:13:37.757182" elapsed="0.651751"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-01-21T11:13:38.455873" level="INFO">${highest_value_iphone} = 14.006</msg>
+<var>${highest_value_iphone}</var>
+<arg>${HIGHEST_VALUE}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-01-21T11:13:38.408933" elapsed="0.046940"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>O valor encontrado do Iphone mais caro é:${highest_value_iphone}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-01-21T11:13:38.455873" elapsed="0.001001"/>
+</kw>
+<status status="PASS" start="2024-01-21T11:13:37.516471" elapsed="0.940403"/>
+</kw>
+<kw name="Então confirmo que o valor convertido em dólar é menor ou igual a US$3000" owner="iphone_search">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-01-21T11:13:38.457875" level="INFO">${parameters_endpoint} = {'base': 'BRL', 'symbols': 'USD'}</msg>
+<var>${parameters_endpoint}</var>
+<arg>base=BRL</arg>
+<arg>symbols=USD</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-01-21T11:13:38.457875" elapsed="0.001006"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-01-21T11:13:38.766665" level="INFO">${highest_value_iphone} = 14.006</msg>
+<var>${highest_value_iphone}</var>
+<arg>${HIGHEST_VALUE}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-01-21T11:13:38.458881" elapsed="0.307784"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-01-21T11:13:38.767667" level="INFO">${dollar_converter} = 14006</msg>
+<var>${dollar_converter}</var>
+<arg>${highest_value_iphone.replace('.', '').replace(',', '.')}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-01-21T11:13:38.766665" elapsed="0.001002"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-01-21T11:13:38.767667" level="INFO">Creating Session using : alias=Exchangeratesapi, url=https://open.er-api.com/v6/latest, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>Exchangeratesapi</arg>
+<arg>${BASE_URI}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-01-21T11:13:38.767667" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2024-01-21T11:13:39.682275" level="INFO">GET Request : url=https://open.er-api.com/v6/latest/BRL?apikey=ad63d7dc3f9315bf1f88c6df26d0568e&amp;symbols=USD%20/%20expected_status=200 
+ path_url=/v6/latest/BRL?apikey=ad63d7dc3f9315bf1f88c6df26d0568e&amp;symbols=USD%20/%20expected_status=200 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2024-01-21T11:13:39.682275" level="INFO">GET Response : url=https://open.er-api.com/v6/latest/BRL?apikey=ad63d7dc3f9315bf1f88c6df26d0568e&amp;symbols=USD%20/%20expected_status=200 
+ status=200, reason=OK 
+ headers={'Date': 'Sun, 21 Jan 2024 14:13:39 GMT', 'Content-Type': 'application/json', 'Content-Length': '1613', 'Connection': 'keep-alive', 'access-control-allow-origin': '*', 'Cache-Control': 'public, max-age=3600', 'Content-Encoding': 'gzip', 'x-content-type-options': 'NOSNIFF', 'x-frame-options': 'SAMEORIGIN', 'Last-Modified': 'Sun, 21 Jan 2024 12:18:30 GMT', 'CF-Cache-Status': 'EXPIRED', 'Accept-Ranges': 'bytes', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=S5mQWegmnPRFFNKL6DV1WZov2V1LgAEIf1%2BJcfKONt7hfQMUZF9EmzBRnuiqx1UqhSiYgZH%2BDlQYr2NEeAWzK9tLYfqkZhgxRZQNVcTSKuVgdoetuFQe0KcnJH4dB1GnHux%2FCjJvX1q6wMWqVw%3D%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '849028b36f65a492-GRU'} 
+ body={"result":"success","provider":"https://www.exchangerate-api.com","documentation":"https://www.exchangerate-api.com/docs/free","terms_of_use":"https://www.exchangerate-api.com/terms","time_last_update_unix":1705795351,"time_last_update_utc":"Sun, 21 Jan 2024 00:02:31 +0000","time_next_update_unix":1705883021,"time_next_update_utc":"Mon, 22 Jan 2024 00:23:41 +0000","time_eol_unix":0,"base_code":"BRL","rates":{"BRL":1,"AED":0.745243,"AFN":14.787572,"ALL":19.439278,"AMD":82.180363,"ANG":0.363236,"AOA":171.018226,"ARS":166.347933,"AUD":0.308235,"AWG":0.363236,"AZN":0.343343,"BAM":0.36461,"BBD":0.40585,"BDT":22.275806,"BGN":0.364653,"BHD":0.0763,"BIF":576.805556,"BMD":0.202925,"BND":0.272221,"BOB":1.393582,"BSD":0.202925,"BTN":16.868653,"BWP":2.777844,"BYN":0.648948,"BZD":0.40585,"CAD":0.273328,"CDF":556.205357,"CHF":0.176475,"CLP":185.997062,"CNY":1.460012,"COP":807.185024,"CRC":104.691281,"CUP":4.870205,"CVE":20.555831,"CZK":4.62322,"DJF":36.06407,"DKK":1.390741,"DOP":11.728746,"DZD":27.250632,"EGP":6.288508,"ERN":3.043878,"ETB":11.459713,"EUR":0.186422,"FJD":0.454649,"FKP":0.15999,"FOK":1.390741,"GBP":0.159943,"GEL":0.538408,"GGP":0.15999,"GHS":2.475999,"GIP":0.15999,"GMD":13.286862,"GNF":1742.164058,"GTQ":1.573491,"GYD":42.435286,"HKD":1.586535,"HNL":4.963652,"HRK":1.404597,"HTG":26.851293,"HUF":71.34412,"IDR":3172.974365,"ILS":0.761901,"IMP":0.15999,"INR":16.863986,"IQD":265.085106,"IRR":8576.750898,"ISK":27.840105,"JEP":0.15999,"JMD":31.190625,"JOD":0.143874,"JPY":30.046399,"KES":32.475211,"KGS":18.137534,"KHR":830.6,"KID":0.308234,"KMF":91.713654,"KRW":271.429869,"KWD":0.062148,"KYD":0.169104,"KZT":91.411543,"LAK":4134.992082,"LBP":3043.878009,"LKR":65.000668,"LRD":38.581476,"LSL":3.849968,"LYD":0.977667,"MAD":2.024466,"MDL":3.582778,"MGA":916.102941,"MKD":11.502039,"MMK":423.368403,"MNT":695.215639,"MOP":1.63413,"MRU":8.015311,"MUR":9.014906,"MVR":3.108098,"MWK":344.022714,"MXN":3.483488,"MYR":0.956902,"MZN":12.970979,"NAD":3.849968,"NGN":167.536755,"NIO":7.366359,"NOK":2.131379,"NPR":26.989846,"NZD":0.33216,"OMR":0.078024,"PAB":0.202925,"PEN":0.759667,"PGK":0.75008,"PHP":11.346159,"PKR":56.09143,"PLN":0.817281,"PYG":1478.78951,"QAR":0.738648,"RON":0.929391,"RSD":21.837901,"RUB":18.162281,"RWF":266.593253,"SAR":0.76097,"SBD":1.685145,"SCR":2.717107,"SDG":90.545058,"SEK":2.123537,"SGD":0.272221,"SHP":0.15999,"SLE":4.60571,"SLL":4606.756039,"SOS":115.789963,"SRD":7.473905,"SSP":223.577146,"STN":4.567341,"SYP":2587.659859,"SZL":3.849968,"THB":7.21183,"TJS":2.216171,"TMT":0.709723,"TND":0.631396,"TOP":0.476425,"TRY":6.126558,"TTD":1.34148,"TVD":0.308234,"TWD":6.392493,"TZS":515.461798,"UAH":7.62073,"UGX":772.213343,"USD":0.202879,"UYU":7.938112,"UZS":2498.053947,"VES":7.333248,"VND":4941.669752,"VUV":24.355438,"WST":0.554319,"XAF":122.284872,"XCD":0.547898,"XDR":0.152306,"XOF":122.284872,"XPF":22.24612,"YER":50.336625,"ZAR":3.852834,"ZMW":5.36836,"ZWL":1806.183499}} 
+ </msg>
+<msg time="2024-01-21T11:13:39.682275" level="INFO">C:\Python312\Lib\site-packages\urllib3\connectionpool.py:1099: InsecureRequestWarning: Unverified HTTPS request is being made to host 'open.er-api.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2024-01-21T11:13:39.683275" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<var>${resp}</var>
+<arg>Exchangeratesapi</arg>
+<arg>url=${parameters_endpoint}[base]?apikey=${ACCESS_KEY}&amp;symbols=${parameters_endpoint}[symbols] / expected_status=200</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-01-21T11:13:38.767667" elapsed="0.915608"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-01-21T11:13:39.684276" level="INFO">${json_data} = {'result': 'success', 'provider': 'https://www.exchangerate-api.com', 'documentation': 'https://www.exchangerate-api.com/docs/free', 'terms_of_use': 'https://www.exchangerate-api.com/terms', 'time_las...</msg>
+<var>${json_data}</var>
+<arg>json.loads('''${resp.content}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-01-21T11:13:39.683275" elapsed="0.001001"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2024-01-21T11:13:39.685275" level="INFO">${exchange_rate_usd} = {'BRL': 1, 'AED': 0.745243, 'AFN': 14.787572, 'ALL': 19.439278, 'AMD': 82.180363, 'ANG': 0.363236, 'AOA': 171.018226, 'ARS': 166.347933, 'AUD': 0.308235, 'AWG': 0.363236, 'AZN': 0.343343, 'BAM': 0.364...</msg>
+<var>${exchange_rate_usd}</var>
+<arg>${json_data}</arg>
+<arg>rates</arg>
+<arg>default=None</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2024-01-21T11:13:39.684276" elapsed="0.000999"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-01-21T11:13:39.686276" level="INFO">${exchange_tax} = 0.202879</msg>
+<var>${exchange_tax}</var>
+<arg>${resp.json()['rates']['${SYMBOLS}']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-01-21T11:13:39.685275" elapsed="0.001001"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-01-21T11:13:39.686276" level="INFO">${dollar_conversation} = 2841.523274</msg>
+<var>${dollar_conversation}</var>
+<arg>${dollar_converter} * ${exchange_tax}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-01-21T11:13:39.686276" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-01-21T11:13:39.686276" level="INFO">${converted_value} = 2841.52</msg>
+<var>${converted_value}</var>
+<arg>round(${dollar_conversation}, 2)</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-01-21T11:13:39.686276" elapsed="0.000000"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>O Iphone de maior valor é R$${dollar_converter}, que convertido para dólar, fica: US$${converted_value}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-01-21T11:13:39.687278" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-01-21T11:13:39.688278" level="INFO">${less_equal} = True</msg>
+<var>${less_equal}</var>
+<arg>${converted_value} &lt;= 3000</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-01-21T11:13:39.687278" elapsed="0.001000"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${less_equal}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2024-01-21T11:13:39.688278" elapsed="0.001001"/>
+</kw>
+<status status="PASS" start="2024-01-21T11:13:38.457875" elapsed="1.231404"/>
+</kw>
+<kw name="Fechar navegador" owner="base" type="TEARDOWN">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-01-21T11:13:39.690797" elapsed="2.185145"/>
+</kw>
+<status status="PASS" start="2024-01-21T11:13:39.689786" elapsed="2.186156"/>
+</kw>
+<tag>maior_valor</tag>
+<status status="PASS" start="2024-01-21T11:13:25.629763" elapsed="16.246179"/>
+</test>
+<doc>Acessar o Google e pesquisar celular Iphone pela Amazon Brasil</doc>
+<status status="PASS" start="2024-01-21T11:13:25.353162" elapsed="16.524782"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">maior_valor</stat>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Iphone Search">Iphone Search</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
