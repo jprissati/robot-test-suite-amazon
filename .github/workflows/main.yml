@@ -13,10 +13,14 @@ jobs:
     - name: Install WebDriverManager
       run: pip install webdrivermanager
 
-    - name: Configure Selenium
+     - name: Configure Selenium
       run: |
         echo "Caminho atual: $PATH"
-        webdrivermanager chrome --linkpath C:\chromedriver\chromedriver.exe
+        webdrivermanager chrome --linkpath C:\path\to\webdrivermanager
+
+        # Adiciona o diretório ao ambiente PATH
+        echo "Adicionando diretório ao PATH"
+        echo "C:\chromedriver\chromedriver.exe" >> $GITHUB_PATH
 
     - name: Set up Python
       uses: actions/setup-python@v2
