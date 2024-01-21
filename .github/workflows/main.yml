@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: selenium/standalone-chrome
+      image: openstax/selenium-chrome
       options: --shm-size=2g
 
     steps:
