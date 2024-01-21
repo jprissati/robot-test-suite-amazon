@@ -6,9 +6,13 @@ jobs:
   test:
     runs-on: selenium/standalone-chrome:latest
 
-    steps:
+  steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
+
+    - name: Configure Selenium
+      run: |
+        webdrivermanager chrome --linkpath /usr/bin
 
     - name: Set up Python
       uses: actions/setup-python@v2
