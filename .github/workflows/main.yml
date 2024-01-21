@@ -4,11 +4,7 @@ on: [push, pull_request]
 
 jobs:
   test:
-    runs-on: ubuntu-latest
-
-    container:
-      image: openstax/selenium-chrome
-      options: --shm-size=2g
+    runs-on: windows-latest
 
     steps:
     - name: Checkout Repository
