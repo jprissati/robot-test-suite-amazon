@@ -22,10 +22,13 @@ jobs:
 
     - name: Install Chromedriver
       run: |
-        pip install chromedriver_autoinstaller
-        python -c "import chromedriver_autoinstaller; chromedriver_autoinstaller.install()"
-        chromedriver --version
-        echo "C:\path\to\chromedriver" >> $env:PATH
+        # Download and extract Chromedriver
+        Invoke-WebRequest -Uri https://chromedriver.storage.googleapis.com/120.0.6099.109/chromedriver_win32.zip -OutFile chromedriver.zip
+        Expand-Archive -Path chromedriver.zip -DestinationPath $env:ProgramFiles
+        Remove-Item chromedriver.zip
+
+        # Add Chromedriver to the PATH
+        $env:Path += ";$env:ProgramFiles\chromedriver_win32"
 
     - name: Run Tests
       run: |
