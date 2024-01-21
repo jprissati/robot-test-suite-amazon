@@ -1,35 +1,25 @@
-name: Teste com robot framework
+name: CI
 
-on: workflow_dispatch
+on: [push, pull_request]
 
 jobs:
-  run_automation:
-    runs-on: ubuntu-latest
+  test:
+    runs-on: windows-latestt
+
     steps:
-    - uses: actions/checkout@v1
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
+
     - name: Install Dependencies
       run: |
-        sudo apt update
-        sudo apt install -y software-properties-common
-        sudo add-apt-repository ppa:deadsnakes/ppa
-        sudo apt update
-        sudo apt install -y python3.12
-    - name: Verify Version
-      run: |
-        python3.12 --version
-    - name: Install libraries for robot
-      run: |
-        python3.12 -m pip install --upgrade pip
-        python3.12 -m pip install --upgrade robotframework
-        python3.12 -m pip install --upgrade selenium==4.9.1
-        python3.12 -m pip install -r requirements.txt
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt  #
+
     - name: Run Tests
       run: |
-        mkdir results
         robot -d ./logs tests/iphone_search.robot
-    - name: Upload test results
-      uses: actions/upload-artifact@v1
-      if: always()
-      with:
-        name: reports
-        path: reports
