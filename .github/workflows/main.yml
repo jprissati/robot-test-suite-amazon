@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   test:
-    runs-on: jramanp/selenium-windows:latest
+    runs-on: spryker/chromedriver:latest
 
     steps:
     - name: Checkout Repository
