@@ -1,5 +1,4 @@
 *** Settings ***
-
 Documentation        Acessar o Google e pesquisar celular Iphone pela Amazon Brasil
 
 Library           SeleniumLibrary

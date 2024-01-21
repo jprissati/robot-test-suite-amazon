@@ -19,7 +19,7 @@ Dado que acesso o Google pesquisando por Amazon Brasil
     ${input_text}    Create Dictionary
     ...              amazon_brasil=Amazon Brasil
     
-    Open Browser         url=${URL_GOOGLE}         browser=${BROWSER_CHROME}        options=${HEADLESS}
+    Open Browser         url=${URL_GOOGLE}         browser=${BROWSER_CHROME}
     Maximize Browser Window
     Input Text         ${FIELD_SEARCH_GOOGLE}      ${input_text}[amazon_brasil] 
     Press Keys         ${FIELD_SEARCH_GOOGLE}      ENTER
