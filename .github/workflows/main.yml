@@ -21,9 +21,10 @@ jobs:
         pip install -r requirements.txt
 
     - name: Install Chromedriver
-      run: | 
-        pip install chromedriver
-  
+      run: |
+        pip install chromedriver_autoinstaller
+        chromedriver_autoinstaller
+        
     - name: Run Tests
       run: |
         robot -d ./logs tests/iphone_search.robot
