@@ -7,24 +7,27 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+    - name: Checkout Repository
+      uses: actions/checkout@v2
 
-      - name: Configure Selenium
-        run: |
-          webdrivermanager chrome --linkpath /usr/bin
+    - name: Install WebDriverManager
+      run: pip install webdrivermanager
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.x
+    - name: Configure Selenium
+      run: |
+        echo "Caminho atual: $PATH"
+        webdrivermanager chrome --linkpath C:\chromedriver\chromedriver.exe
 
-      - name: Install Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install webdrivermanager
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
 
-      - name: Run Tests
-        run: |
-          robot -d ./logs tests/iphone_search.robot
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run Tests
+      run: |
+        robot -d ./logs tests/iphone_search.robot
