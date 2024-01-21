@@ -13,7 +13,7 @@ jobs:
     - name: Install WebDriverManager
       run: pip install webdrivermanager
 
-     - name: Configure Selenium
+    - name: Configure Selenium
       run: |
         echo "Caminho atual: $PATH"
         webdrivermanager chrome --linkpath C:\path\to\webdrivermanager
