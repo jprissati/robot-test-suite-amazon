@@ -21,15 +21,19 @@ jobs:
         pip install -r requirements.txt
 
     - name: Install Chromedriver
-      run: |
+       run: |
+        # Get the latest Chromedriver version
+        $latest_version = (Invoke-WebRequest -Uri https://chromedriver.storage.googleapis.com/LATEST_RELEASE).Content.Trim()
+
         # Download and extract Chromedriver
-        Invoke-WebRequest -Uri https://chromedriver.storage.googleapis.com/120.0.6099.109/chromedriver_win32.zip -OutFile chromedriver.zip
+        $url = "https://chromedriver.storage.googleapis.com/$latest_version/chromedriver_win32.zip"
+        Invoke-WebRequest -Uri $url -OutFile chromedriver.zip
         Expand-Archive -Path chromedriver.zip -DestinationPath $env:ProgramFiles
         Remove-Item chromedriver.zip
 
         # Add Chromedriver to the PATH
         $env:Path += ";$env:ProgramFiles\chromedriver_win32"
-
+        
     - name: Run Tests
       run: |
         robot -d ./logs tests/iphone_search.robot
