@@ -7,30 +7,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Install Dependecies
-      env:
-        PYTHON_VERSION: "3.12"
+    - name: Install Dependencies
       run: |
-        py_version=$PYTHON_VERSION
         sudo apt update
-        sudo apt install python"$py_version"
+        sudo apt install -y software-properties-common
+        sudo add-apt-repository ppa:deadsnakes/ppa
+        sudo apt update
+        sudo apt install -y python3.12
     - name: Verify Version
       run: |
-          python --version
+        python3.12 --version
     - name: Install libraries for robot
       run: |
-          pip install -U pip
-          pip install --upgrade robotframework
-          pip install --upgrade selenium==4.9.1
-          pip install -r requirements.txt
+        python3.12 -m pip install --upgrade pip
+        python3.12 -m pip install --upgrade robotframework
+        python3.12 -m pip install --upgrade selenium==4.9.1
+        python3.12 -m pip install -r requirements.txt
     - name: Run Tests
       run: |
-            mkdir results
-            robot -d ./logs tests/iphone_search.robot
+        mkdir results
+        robot -d ./logs tests/iphone_search.robot
     - name: Upload test results
       uses: actions/upload-artifact@v1
       if: always()
       with:
         name: reports
         path: reports
-        
