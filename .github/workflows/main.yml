@@ -23,8 +23,9 @@ jobs:
     - name: Install Chromedriver
       run: |
         pip install chromedriver_autoinstaller
-        chromedriver_autoinstaller
-        
+        python -c "import chromedriver_autoinstaller; chromedriver_autoinstaller.install()"
+        chromedriver --version
+
     - name: Run Tests
       run: |
         robot -d ./logs tests/iphone_search.robot
