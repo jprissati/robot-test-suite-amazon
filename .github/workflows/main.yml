@@ -25,12 +25,7 @@ jobs:
         pip install chromedriver_autoinstaller
         python -c "import chromedriver_autoinstaller; chromedriver_autoinstaller.install()"
         chromedriver --version
-        echo "C:\\path\\to\\chromedriver" >> $env:PATH
-
-      - name: Make Chromedriver executable
-      run: |
-        chmod +x /path/to/chromedriver
-
+        echo "C:\path\to\chromedriver" >> $env:PATH
 
     - name: Run Tests
       run: |
