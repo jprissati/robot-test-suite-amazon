@@ -4,7 +4,10 @@ on: [push, pull_request]
 
 jobs:
   test:
-    runs-on: myprivateproxy/pysel:latest
+    runs-on: ubuntu-latest
+
+    container:
+      image: nfqlt/chromedriver:latest
 
     steps:
     - name: Checkout Repository
