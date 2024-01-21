@@ -1,4 +1,4 @@
-robotframework
-robotframework-requests
+robotframework-browser
+robotframework-axelibrary
 robotframework-seleniumlibrary
-chromedriver_autoinstaller
+webdrivermanager
