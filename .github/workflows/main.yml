@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   test:
-    runs-on: windows-latest
+    runs-on: selenium/standalone-chrome:latest
 
     steps:
     - name: Checkout Repository
@@ -20,8 +20,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install robotframework
         pip install --upgrade robotframework-seleniumlibrary
-        pip install webdrivermanager
-        webdrivermanager firefox chrome --linkpath /usr/local/bin
         pip install robotframework-requests
 
     - name: Run Tests
