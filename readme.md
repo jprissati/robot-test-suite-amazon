@@ -22,6 +22,7 @@ Este projeto realiza testes automatizados de busca por iPhones na Amazon Brasil 
    robotframework-requests
 
 ## Execução de cenários
+   ```bash
 Toda suíte: robot -d ./logs tests/iphone_search.robot
 Cenário Busca por iPhones na Amazon Brasil e Validar Resultados (80% iPhones): robot -d ./logs -i busca_iphone tests/iphone_search.robot
 Cenário Confirmar que o Item de Maior Valor é Menor ou Igual a US$3000: robot -d ./logs -i maior_valor tests/iphone_search.robot
