@@ -12,8 +12,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      - image: circleci/python:3.8
-      - image: selenium/standalone-chrome:3.11.0
+      image: nfqlt/chromedriver:latest
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
@@ -28,7 +27,7 @@ jobs:
         pip install robotframework
         pip install --upgrade robotframework-seleniumlibrary
         pip install robotframework-requests
-
+        
     - name: Make scripts executable
       run: |
         chmod +x tests/*.robot
