@@ -16,14 +16,13 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
-    - name: Set up Python and pip
-      run: |
-         apt install python3-xyz
+    
     - name: Install Dependencies
       run: |
         pip install robotframework
         pip install --upgrade robotframework-seleniumlibrary
         pip install robotframework-requests
+        
     - name: Make scripts executable
       run: |
         chmod +x tests/*.robot
